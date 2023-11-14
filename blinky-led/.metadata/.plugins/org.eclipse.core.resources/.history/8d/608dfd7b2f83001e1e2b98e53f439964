@@ -1,0 +1,19 @@
+#include "msp.h"
+
+#define RED         0x0001
+#define RED_OFF     0x00FE
+#define ENABLE_RED  0xFFFE
+#define DEVELOPMENT 0x5A80
+
+int main(void) {
+  WDTCTL  = DEVELOPMENT; // Disables some security features
+  PM5CTL0 = ENABLE_RED;  // Enables the pins to the outside world
+  P1DIR   = RED;         // Make a pin an output
+  long x  = 0;           // Will be used to slow down blinking
+  while (1) {
+    for (x = 0; x < 30000; x = x + 1) {}
+    P1OUT = RED; // Turn red LED light on
+    for (x = 0; x < 30000; x = x + 1) {}
+    P1OUT = RED_OFF; // Turn off the red LED light
+  }
+}
