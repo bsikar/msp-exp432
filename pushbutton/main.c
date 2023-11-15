@@ -20,9 +20,7 @@ int main(void) {
   P1->REN    = BUTTON1;     // Button needs a pull-up resistor
 
   while (1) {
-    while ((BUTTON1 & P1->IN) == 0) {
-      P1->OUT |= RED;
-    }
+    while ((BUTTON1 & P1->IN) == 0) { P1->OUT |= RED; }
     P1->OUT &= RED_OFF;
   }
 }

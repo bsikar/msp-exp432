@@ -11,9 +11,9 @@
 #define DELAY       0x30D40
 #define BUTTON1     0x0002
 
-#define ACLK    TIMER_A_CTL_SSEL__ACLK
-#define UP      TIMER_A_CTL_MC__UP
-#define TAIFG   TIMER_A_CTL_IFG
+#define ACLK        TIMER_A_CTL_SSEL__ACLK
+#define UP          TIMER_A_CTL_MC__UP
+#define TAIFG       TIMER_A_CTL_IFG
 
 int main(void) {
   WDT_A->CTL = DEVELOPMENT; // Disables some security features
@@ -25,11 +25,11 @@ int main(void) {
   volatile uint_fast8_t inteverals = 0;
 
   TIMER_A0->CCR0 = 20000; // how to do this!?!??!!?!? TODO : this doesnt work
-  TIMER_A0->CTL = ACLK | UP;
+  TIMER_A0->CTL  = ACLK | UP;
 
   while (1) {
     if (TIMER_A0->CTL & TAIFG) { // If the timer has counted to 20,000
-      inteverals += 1;           // Update the number of 20,000 counts
+      inteverals    += 1;        // Update the number of 20,000 counts
       TIMER_A0->CTL &= ~TAIFG;   // Count again
 
       if (inteverals == 3) {
