@@ -1,0 +1,5 @@
+2023/11/15-00:18:19.039 5e84 Creating DB C:\Users\brighton\Documents\GitHub\msp432p4111\.jxbrowser.userdata\Default\Local Storage\leveldb since it was missing.
+2023/11/15-00:18:19.042 5e84 Reusing MANIFEST C:\Users\brighton\Documents\GitHub\msp432p4111\.jxbrowser.userdata\Default\Local Storage\leveldb/MANIFEST-000001
+2023/11/15-00:25:16.959 61f0 Level-0 table #5: started
+2023/11/15-00:25:16.961 61f0 Level-0 table #5: 26252 bytes OK
+2023/11/15-00:25:16.962 61f0 Delete type=0 #3
