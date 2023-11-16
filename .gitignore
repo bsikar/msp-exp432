@@ -6,9 +6,9 @@ RemoteSystemsTempFiles
 **/targetConfigs
 
 # maybe i will delete the following, i might change this part later to keep the files
-**/.ccsproject
-**/.cproject
-**/.project
+# **/.ccsproject
+# **/.cproject
+# **/.project
 
 # Prerequisites
 *.d
