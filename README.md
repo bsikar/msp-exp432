@@ -9,4 +9,5 @@ https://www.ti.com/tool/CCSTUDIO#downloads
 
 ## formatting
 linux: ./format.sh
+
 windows: powershell -ExecutionPolicy Bypass -File .\format.ps1
