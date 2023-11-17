@@ -4,12 +4,12 @@
 #include "msp.h"
 
 int main(void) {
-  WDT_A->CTL          = WDT_A_CTL_PW | WDT_A_CTL_HOLD; // stop watchdog timer
+  WDT_A->CTL = WDT_A_CTL_PW | WDT_A_CTL_HOLD; // stop watchdog timer
 
   // Set up Port 2 Pin 0
-  P2->SEL0            = 0x00;
-  P2->SEL1            = 0x00;
-  P2->DIR            |= 0x01;
+  P2->SEL0  = 0x00;
+  P2->SEL1  = 0x00;
+  P2->DIR  |= 0x01;
 
   TIMER32_1->LOAD     = 3 * 3e6 - 1; // 3 seconds
   TIMER32_1->CONTROL |= 0x43;        // oneshot

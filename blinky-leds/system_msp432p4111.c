@@ -59,7 +59,7 @@
 //  Halt the Watchdog Timer
 //     <0> Do not halt the WDT
 //     <1> Halt the WDT
-#define __HALT_WDT     1
+#define __HALT_WDT 1
 
 /*--------------------- CPU Frequency Configuration -------------------------*/
 //  CPU Frequency
@@ -74,15 +74,15 @@
 //  Power Regulator Mode
 //     <0> LDO
 //     <1> DC-DC
-#define __REGULATOR    0
+#define __REGULATOR 0
 
 /*----------------------------------------------------------------------------
    Define clocks, used for SystemCoreClockUpdate()
  *---------------------------------------------------------------------------*/
-#define __VLOCLK       10000
-#define __MODCLK       24000000
-#define __LFXT         32768
-#define __HFXT         48000000
+#define __VLOCLK 10000
+#define __MODCLK 24000000
+#define __LFXT   32768
+#define __HFXT   48000000
 
 /*----------------------------------------------------------------------------
    Clock Variable definitions
@@ -105,9 +105,9 @@ void SystemCoreClockUpdate(void) {
   int16_t dcoTune  = 0;
   float   dcoConst = 0.0;
 
-  divider          = (CS->CTL1 & CS_CTL1_DIVM_MASK) >> CS_CTL1_DIVM_OFS;
-  dividerValue     = 1 << divider;
-  source           = CS->CTL1 & CS_CTL1_SELM_MASK;
+  divider      = (CS->CTL1 & CS_CTL1_DIVM_MASK) >> CS_CTL1_DIVM_OFS;
+  dividerValue = 1 << divider;
+  source       = CS->CTL1 & CS_CTL1_SELM_MASK;
 
   switch (source) {
   case CS_CTL1_SELM__LFXTCLK:
@@ -357,7 +357,7 @@ void SystemInit(void) {
   CS->CTL0  = CS_CTL0_DCORSEL_4; // Set DCO to 24MHz
   CS->CTL1 &= ~(CS_CTL1_SELM_MASK | CS_CTL1_DIVM_MASK) |
               CS_CTL1_SELM__DCOCLK; // Select MCLK as DCO source
-  CS->KEY               = 0;
+  CS->KEY = 0;
 
   // Set Flash Bank read buffering
   FLCTL_A->BANK0_RDCTL |= (FLCTL_A_BANK0_RDCTL_BUFD | FLCTL_A_BANK0_RDCTL_BUFI);
@@ -395,7 +395,7 @@ void SystemInit(void) {
   CS->CTL0  = CS_CTL0_DCORSEL_5; // Set DCO to 48MHz
   CS->CTL1 &= ~(CS_CTL1_SELM_MASK | CS_CTL1_DIVM_MASK) |
               CS_CTL1_SELM__DCOCLK; // Select MCLK as DCO source
-  CS->KEY               = 0;
+  CS->KEY = 0;
 
   // Set Flash Bank read buffering
   FLCTL_A->BANK0_RDCTL |= (FLCTL_A_BANK0_RDCTL_BUFD | FLCTL_A_BANK0_RDCTL_BUFI);

@@ -5,9 +5,6 @@
 SHELL = cmd.exe
 
 # Add inputs and outputs from these tool invocations to the build variables 
-CMD_SRCS += \
-../msp432p4111.cmd 
-
 C_SRCS += \
 ../main.c \
 ../startup_msp432p4111_ccs.c \

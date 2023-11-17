@@ -11,14 +11,14 @@ int main(void) {
   P1->SEL1 &= ~0x03;
 
   // set P1.0 as output and P1.1 as input
-  P1->DIR  |= 0x1;  // set P1.0 as output
-  P1->DIR  &= ~0x2; // set P1.1 as input
+  P1->DIR |= 0x1;  // set P1.0 as output
+  P1->DIR &= ~0x2; // set P1.1 as input
 
   // enable pull-up/pull-down resistors for P1.1
-  P1->REN  |= 0x2;
+  P1->REN |= 0x2;
 
   // enable pull-up resistor for P1.1
-  P1->OUT  |= 0x2; // textbook says P1->OUT &= ~0x2;
+  P1->OUT |= 0x2; // textbook says P1->OUT &= ~0x2;
 
   while (1) {
     // check if the button connected to P1.1 is pressed
