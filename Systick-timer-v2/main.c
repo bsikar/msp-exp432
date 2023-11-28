@@ -24,12 +24,12 @@
 
 int main(void) {
   // Stop watchdog timer
-  WDT_A->CTL     = WATCHDOG_PASSWORD | WATCHDOG_HOLD;
+  WDT_A->CTL = WATCHDOG_PASSWORD | WATCHDOG_HOLD;
 
   // Set up Port 1 Pin 0 as GPIO output
-  P1->SEL0      &= ~GPIO_PIN0;
-  P1->SEL1      &= ~GPIO_PIN0;
-  P1->DIR       |= GPIO_PIN0;
+  P1->SEL0 &= ~GPIO_PIN0;
+  P1->SEL1 &= ~GPIO_PIN0;
+  P1->DIR  |= GPIO_PIN0;
 
   // Configure SysTick for 3-second delay
   SysTick->LOAD  = DELAY_3_SEC;

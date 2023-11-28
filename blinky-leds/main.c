@@ -31,14 +31,14 @@ typedef struct {
 void set_io_defaults(DIO_PORT_WRAPPER p, uint16_t *odd_pins,
                      uint16_t *even_pins);
 
-int  main(void) {
+int main(void) {
   WDT_A->CTL = WDT_A_CTL_PW | WDT_A_CTL_HOLD; // stop watchdog timer
 
   // enable P1 (for button) and P2 (for led)
   set_io_defaults(
       (DIO_PORT_WRAPPER){.odd = (DIO_PORT_Odd_Interruptable_Type *[]){P1, NULL},
-                          .even =
-                              (DIO_PORT_Even_Interruptable_Type *[]){P2, NULL}},
+                         .even =
+                             (DIO_PORT_Even_Interruptable_Type *[]){P2, NULL}},
       (uint16_t[]){BUTTON_PINS, NULL}, (uint16_t[]){RGB_PINS, NULL});
 
   uint8_t colors[8] = {RED, GREEN, YELLOW, BLUE, PURPLE, TURQUOISE, WHITE, OFF};

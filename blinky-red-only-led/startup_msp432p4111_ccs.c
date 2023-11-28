@@ -42,14 +42,14 @@ extern unsigned long __STACK_END;
 
 /* External declaration for the reset handler that is to be called when the */
 /* processor is started                                                     */
-extern void          _c_int00(void);
+extern void _c_int00(void);
 
 /* External declaration for system initialization function                  */
-extern void          SystemInit(void);
+extern void SystemInit(void);
 
 /* Forward declaration of the default fault handlers. */
-void                 Default_Handler(void) __attribute__((weak));
-extern void          Reset_Handler(void) __attribute__((weak));
+void        Default_Handler(void) __attribute__((weak));
+extern void Reset_Handler(void) __attribute__((weak));
 
 /* Cortex-M4 Processor Exceptions */
 extern void NMI_Handler(void) __attribute__((weak, alias("Default_Handler")));

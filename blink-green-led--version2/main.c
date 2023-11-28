@@ -9,13 +9,13 @@
 
 void delay_ms(volatile uint_fast32_t);
 
-int  main(void) {
+int main(void) {
   // configure P2.1 as simple IO
   P2->SEL1 &= ~GREEN_LED;
   P2->SEL0 &= ~GREEN_LED;
 
   // set P2.1 as output pin
-  P2->DIR  |= GREEN_LED;
+  P2->DIR |= GREEN_LED;
 
   while (1) {
     P2->OUT |= GREEN_LED; // turn on P2.1 green LED
