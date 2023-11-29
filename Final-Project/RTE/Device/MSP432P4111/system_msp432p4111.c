@@ -2,15 +2,15 @@
  * @file     system_msp432p4111.c
  * @brief    CMSIS Cortex-M4F Device Peripheral Access Layer Source File for
  *           MSP432P4111
- * @version  3.240
- * @date     12/16/19
+ * @version  3.230
+ * @date     01/15/18
  *
  * @note     View configuration instructions embedded in comments
  *
  ******************************************************************************/
 //*****************************************************************************
 //
-// Copyright (C) 2015 - 2019 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2015 - 2018 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions
@@ -345,12 +345,10 @@ void SystemInit(void) {
 #endif
 
   // 2 flash wait state (BANK0 VCORE0 max is 24 MHz)
-  FLCTL_A->BANK0_RDCTL =
-      (FLCTL_A->BANK0_RDCTL & ~(FLCTL_A_BANK0_RDCTL_WAIT_MASK)) |
-      FLCTL_A_BANK0_RDCTL_WAIT_2;
-  FLCTL_A->BANK1_RDCTL =
-      (FLCTL_A->BANK0_RDCTL & ~(FLCTL_A_BANK1_RDCTL_WAIT_MASK)) |
-      FLCTL_A_BANK1_RDCTL_WAIT_2;
+  FLCTL_A->BANK0_RDCTL &=
+      ~FLCTL_A_BANK0_RDCTL_WAIT_MASK | FLCTL_A_BANK0_RDCTL_WAIT_2;
+  FLCTL_A->BANK1_RDCTL &=
+      ~FLCTL_A_BANK0_RDCTL_WAIT_MASK | FLCTL_A_BANK0_RDCTL_WAIT_2;
 
   // DCO = 24 MHz; MCLK = source
   CS->KEY   = CS_KEY_VAL;        // Unlock CS module for register access
@@ -383,12 +381,10 @@ void SystemInit(void) {
 
   // 3 flash wait states (BANK0 VCORE1 max is 16 MHz, BANK1 VCORE1 max is 32
   // MHz)
-  FLCTL_A->BANK0_RDCTL =
-      (FLCTL_A->BANK0_RDCTL & ~(FLCTL_A_BANK0_RDCTL_WAIT_MASK)) |
-      FLCTL_A_BANK0_RDCTL_WAIT_3;
-  FLCTL_A->BANK1_RDCTL =
-      (FLCTL_A->BANK0_RDCTL & ~(FLCTL_A_BANK1_RDCTL_WAIT_MASK)) |
-      FLCTL_A_BANK1_RDCTL_WAIT_3;
+  FLCTL_A->BANK0_RDCTL &=
+      ~FLCTL_A_BANK0_RDCTL_WAIT_MASK | FLCTL_A_BANK0_RDCTL_WAIT_3;
+  FLCTL_A->BANK1_RDCTL &=
+      ~FLCTL_A_BANK1_RDCTL_WAIT_MASK | FLCTL_A_BANK1_RDCTL_WAIT_3;
 
   // DCO = 48 MHz; MCLK = source
   CS->KEY   = CS_KEY_VAL;        // Unlock CS module for register access

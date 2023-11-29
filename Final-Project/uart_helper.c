@@ -1,5 +1,7 @@
 #include "uart_helper.h"
 #include "msp.h"
+#include <ctype.h>
+#include <stdlib.h>
 
 void uart_init(void) {
   EUSCI_A0->CTLW0 |= 0X1;
@@ -19,23 +21,30 @@ void uart_send_str(const char *str) {
     i++;
   }
 }
-
 int16_t uart_get_char(void) {
-  uint32_t i = 0;
-  char     cmd[2], x;
-  while (i < 2) {
-    if ((EUSCI_A0->IFG & 0x01) != 0) {
-      // data is in the RX buffer
-      cmd[i] = EUSCI_A0->RXBUF;
-      while ((EUSCI_A0->IFG & 0x02) == 0) {}
+  uint8_t i = 0;
+  char    command[3]; // 'c\r\0'
 
-      if (cmd[i] == '\r') {
-        cmd[i] = '\0';
-        uart_send_str("\n\r");
-        return (int16_t)atoi(cmd);
+  while (1) {
+    if ((EUSCI_A0->IFG & 0x01) != 0) { // data in RX buffer
+      command[i]      = EUSCI_A0->RXBUF;
+      EUSCI_A0->TXBUF = command[i];          // echo
+      while ((EUSCI_A0->IFG & 0x02) == 0) {} // wait
+
+      if (command[i] == '\r') {
+        command[i] = '\0';
+        break;
+      } else {
+        i++;
       }
-      i++;
     }
   }
-  return -1;
+
+  if (!isdigit(command[0])) { // check if the character is a digit
+    uart_send_str("\n\rError: Non-numeric input\r\n");
+    return -1;
+  }
+
+  uart_send_str("\n\r");
+  return atoi(command);
 }
