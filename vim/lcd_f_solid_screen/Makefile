@@ -1,0 +1,80 @@
+SIMPLELINK_MSP432_SDK_INSTALL_DIR ?= /home/brighton/Documents/SDK/msp432p4111/ti/simplelink_msp432p4_sdk_3_40_01_02
+
+CC = arm-none-eabi-gcc
+LNK = arm-none-eabi-gcc
+NAME = lcd_f_solid_text
+
+CFLAGS = -I"$(SIMPLELINK_MSP432_SDK_INSTALL_DIR)/source" \
+	-I"$(SIMPLELINK_MSP432_SDK_INSTALL_DIR)/source/third_party/CMSIS/Include" \
+	-D__MSP432P4111__ \
+	-DDeviceFamily_MSP432P4x1xI \
+	-mcpu=cortex-m4 \
+	-march=armv7e-m \
+	-mthumb \
+	-std=c99 \
+	-mfloat-abi=hard \
+	-mfpu=fpv4-sp-d16 \
+	-ffunction-sections \
+	-fdata-sections \
+	-g \
+	-gstrict-dwarf \
+	-Wall
+
+LFLAGS = -Wl,-T,msp432p4111.lds \
+	-Wl,-Map,"$(NAME).map" \
+	-L"$(SIMPLELINK_MSP432_SDK_INSTALL_DIR)/source" \
+	-l:ti/display/lib/display.am4fg \
+	-l:ti/grlib/lib/gcc/m4f/grlib.a \
+	-l:third_party/spiffs/lib/gcc/m4f/spiffs.a \
+	-l:ti/drivers/lib/drivers_msp432p4x1xi.am4fg \
+	-l:third_party/fatfs/lib/gcc/m4f/fatfs.a \
+	-l:ti/devices/msp432p4xx/driverlib/gcc/msp432p4xx_driverlib.a \
+	-march=armv7e-m \
+	-mthumb \
+	-mfloat-abi=hard \
+	-mfpu=fpv4-sp-d16 \
+	-static \
+	-Wl,--gc-sections \
+	-lgcc \
+	-lc \
+	-lm \
+	-lnosys \
+	--specs=nano.specs
+
+# Source files
+SOURCES = $(wildcard src/*.c lib/*.c)
+
+# Object files
+OBJECTS = $(SOURCES:.c=.o)
+
+# Default target
+all: $(NAME).out
+
+# Compile
+%.o: %.c
+	@echo "Building $@"
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+# Link
+$(NAME).out: $(OBJECTS)
+	@echo "Linking $@"
+	@$(LNK) $(OBJECTS) $(LFLAGS) -o $@
+	@echo "-----"
+	@echo "Built $@ successfully"
+
+# Clean
+clean:
+	@echo "Cleaning..."
+	@rm -f $(OBJECTS) $(NAME).out $(NAME).map
+
+# OpenOCD configurations
+OPENOCD=openocd
+OPENOCD_CFG=/usr/share/openocd/scripts/board/ti_msp432_launchpad.cfg
+
+# Flash the binary to the MSP432P4111
+flash: $(NAME).out
+	@echo Flashing
+	$(OPENOCD) -f $(OPENOCD_CFG) -c "program $< verify reset exit"
+
+.PHONY: all clean
+
