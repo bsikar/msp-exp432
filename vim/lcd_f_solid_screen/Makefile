@@ -1,4 +1,4 @@
-SIMPLELINK_MSP432_SDK_INSTALL_DIR ?= /home/brighton/Documents/SDK/msp432p4111/ti/simplelink_msp432p4_sdk_3_40_01_02
+SIMPLELINK_MSP432_SDK_INSTALL_DIR := $(MSP432P4111_HEADERS)
 
 CC = arm-none-eabi-gcc
 LNK = arm-none-eabi-gcc
