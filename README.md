@@ -33,3 +33,15 @@ export MSP432P4111_HEADERS=/path/to/headers
 export MSP432P4111_HEADERS=/home/brighton/Documents/SDK/ti/msp432p4111/simplelink_msp432p4_sdk_3_40_01_02
 ```
 Then source: `source ~/.bashrc`
+
+### Connect
+```
+screen <device> <baud rate>
+screen /dev/ttyUSB0 115200
+```
+or use cool term
+```
+sudo pacman -S paru
+paru coolterm
+```
+
