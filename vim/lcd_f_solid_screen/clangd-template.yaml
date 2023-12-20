@@ -8,7 +8,7 @@ CompileFlags:
     - "-mcpu=cortex-m4"
     - "-march=armv7e-m"
     - "-mthumb"
-    - "-std=c99"
+    - "-std=c17"
     - "-mfloat-abi=hard"
     - "-mfpu=fpv4-sp-d16"
     - "-ffunction-sections"

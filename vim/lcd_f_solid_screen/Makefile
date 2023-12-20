@@ -11,7 +11,7 @@ CFLAGS = -I"$(SIMPLELINK_MSP432_SDK_INSTALL_DIR)/source" \
 	-mcpu=cortex-m4 \
 	-march=armv7e-m \
 	-mthumb \
-	-std=c99 \
+	-std=c17 \
 	-mfloat-abi=hard \
 	-mfpu=fpv4-sp-d16 \
 	-ffunction-sections \
@@ -48,7 +48,7 @@ SOURCES = $(wildcard src/*.c lib/*.c)
 OBJECTS = $(SOURCES:.c=.o)
 
 # Default target
-all: $(NAME).out
+all: $(NAME).elf
 
 # Compile
 %.o: %.c
@@ -56,7 +56,7 @@ all: $(NAME).out
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 # Link
-$(NAME).out: $(OBJECTS)
+$(NAME).elf: $(OBJECTS)
 	@echo "Linking $@"
 	@$(LNK) $(OBJECTS) $(LFLAGS) -o $@
 	@echo "-----"
@@ -65,14 +65,14 @@ $(NAME).out: $(OBJECTS)
 # Clean
 clean:
 	@echo "Cleaning..."
-	@rm -f $(OBJECTS) $(NAME).out $(NAME).map
+	@rm -f $(OBJECTS) $(NAME).elf $(NAME).map
 
 # OpenOCD configurations
 OPENOCD=openocd
 OPENOCD_CFG=/usr/share/openocd/scripts/board/ti_msp432_launchpad.cfg
 
 # Flash the binary to the MSP432P4111
-flash: $(NAME).out
+flash: $(NAME).elf
 	@echo Flashing
 	$(OPENOCD) -f $(OPENOCD_CFG) -c "program $< verify reset exit"
 

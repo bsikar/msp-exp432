@@ -1,1 +1,11 @@
-Run the ./generate-clangd-config.sh for liniting to work
+## For linting run bear
+
+### install
+```
+sudo pacman -S bear
+```
+
+### use
+```
+bear -- make
+```
