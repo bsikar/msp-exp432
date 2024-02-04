@@ -28,9 +28,9 @@ Select a dir to download to, I choose `/home/brighton/Documents/SDK/msp432p4111/
 ### Link
 In your `~/.bashrc` add:
 ```
-export MSP432P4111_HEADERS=/path/to/headers
+export MSP432P4111_HEADERS=/path/to/headers/
 # for example
-export MSP432P4111_HEADERS=/home/brighton/Documents/SDK/ti/msp432p4111/simplelink_msp432p4_sdk_3_40_01_02
+export MSP432P4111_HEADERS=/home/brighton/Documents/SDK/ti/msp432p4111/simplelink_msp432p4_sdk_3_40_01_02/
 ```
 Then source: `source ~/.bashrc`
 
