@@ -1,0 +1,42 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/arm-none-eabi-gcc",
+      "-I/home/brighton/Documents/SDK/ti/msp432p4111/simplelink_msp432p4_sdk_3_40_01_02//source",
+      "-I/home/brighton/Documents/SDK/ti/msp432p4111/simplelink_msp432p4_sdk_3_40_01_02//source/third_party/CMSIS/Include",
+      "-D__MSP432P4111__",
+      "-DDeviceFamily_MSP432P4x1xI",
+      "-mcpu=cortex-m4",
+      "-mthumb",
+      "-mfloat-abi=hard",
+      "-mfpu=fpv4-sp-d16",
+      "-c",
+      "-o",
+      "startup_msp432p4111_gcc.o",
+      "lib/startup_msp432p4111_gcc.c"
+    ],
+    "directory": "/home/brighton/Documents/GitHub/msp432p4111/vim/asm/move-into-memory",
+    "file": "/home/brighton/Documents/GitHub/msp432p4111/vim/asm/move-into-memory/lib/startup_msp432p4111_gcc.c",
+    "output": "/home/brighton/Documents/GitHub/msp432p4111/vim/asm/move-into-memory/startup_msp432p4111_gcc.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/arm-none-eabi-gcc",
+      "-I/home/brighton/Documents/SDK/ti/msp432p4111/simplelink_msp432p4_sdk_3_40_01_02//source",
+      "-I/home/brighton/Documents/SDK/ti/msp432p4111/simplelink_msp432p4_sdk_3_40_01_02//source/third_party/CMSIS/Include",
+      "-D__MSP432P4111__",
+      "-DDeviceFamily_MSP432P4x1xI",
+      "-mcpu=cortex-m4",
+      "-mthumb",
+      "-mfloat-abi=hard",
+      "-mfpu=fpv4-sp-d16",
+      "-c",
+      "-o",
+      "system_msp432p4111.o",
+      "lib/system_msp432p4111.c"
+    ],
+    "directory": "/home/brighton/Documents/GitHub/msp432p4111/vim/asm/move-into-memory",
+    "file": "/home/brighton/Documents/GitHub/msp432p4111/vim/asm/move-into-memory/lib/system_msp432p4111.c",
+    "output": "/home/brighton/Documents/GitHub/msp432p4111/vim/asm/move-into-memory/system_msp432p4111.o"
+  }
+]
