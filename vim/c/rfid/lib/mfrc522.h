@@ -40,8 +40,7 @@
 /* Driver Header files */
 #include <ti/drivers/GPIO.h>
 
-
-/* FIXME: #define CONFIG_GPIO_CS_PIN 7 
+/* FIXME: #define CONFIG_GPIO_CS_PIN 7
  * CS(SDA)     P5.0		Chip select for SPI
  * */
 

@@ -99,17 +99,17 @@ extern "C" {
 #define GPIO_INPUT_PIN_LOW  (0x00)
 
 /* DriverLib internal GPIO register offset for optimized performance */
-#define OFS_LIB_PAIN   ((uint32_t)&P1->IN - (uint32_t)P1)
-#define OFS_LIB_PAOUT  ((uint32_t)&P1->OUT - (uint32_t)P1)
-#define OFS_LIB_PADIR  ((uint32_t)&P1->DIR - (uint32_t)P1)
-#define OFS_LIB_PAREN  ((uint32_t)&P1->REN - (uint32_t)P1)
-#define OFS_LIB_PADS   ((uint32_t)&P1->DS - (uint32_t)P1)
-#define OFS_LIB_PASEL0 ((uint32_t)&P1->SEL0 - (uint32_t)P1)
-#define OFS_LIB_PASEL1 ((uint32_t)&P1->SEL1 - (uint32_t)P1)
-#define OFS_LIB_PAIE   ((uint32_t)&P1->IE - (uint32_t)P1)
-#define OFS_LIB_PAIES  ((uint32_t)&P1->IES - (uint32_t)P1)
-#define OFS_LIB_PAIFG  ((uint32_t)&P1->IFG - (uint32_t)P1)
-#define OFS_LIB_P1IE   ((uint32_t)&P1->IE - (uint32_t)P1)
+#define OFS_LIB_PAIN   ((uint32_t) & P1->IN - (uint32_t)P1)
+#define OFS_LIB_PAOUT  ((uint32_t) & P1->OUT - (uint32_t)P1)
+#define OFS_LIB_PADIR  ((uint32_t) & P1->DIR - (uint32_t)P1)
+#define OFS_LIB_PAREN  ((uint32_t) & P1->REN - (uint32_t)P1)
+#define OFS_LIB_PADS   ((uint32_t) & P1->DS - (uint32_t)P1)
+#define OFS_LIB_PASEL0 ((uint32_t) & P1->SEL0 - (uint32_t)P1)
+#define OFS_LIB_PASEL1 ((uint32_t) & P1->SEL1 - (uint32_t)P1)
+#define OFS_LIB_PAIE   ((uint32_t) & P1->IE - (uint32_t)P1)
+#define OFS_LIB_PAIES  ((uint32_t) & P1->IES - (uint32_t)P1)
+#define OFS_LIB_PAIFG  ((uint32_t) & P1->IFG - (uint32_t)P1)
+#define OFS_LIB_P1IE   ((uint32_t) & P1->IE - (uint32_t)P1)
 #define OFS_LIB_P2IE   OFS_LIB_P1IE
 
 //*****************************************************************************
