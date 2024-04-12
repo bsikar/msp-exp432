@@ -1,4 +1,4 @@
-# msp432p4111
+# msp432
 
 ## used version 3.40.01.02
 [https://www.ti.com/tool/download/SIMPLELINK-MSP432-SDK/3.40.01.02](https://www.ti.com/tool/download/SIMPLELINK-MSP432-SDK/3.40.01.02)
@@ -23,14 +23,14 @@ sudo pacman -S base-devel gcc make arm-none-eabi-gcc openocd dconf arm-none-eabi
 
 ### SDK
 [https://www.ti.com/tool/download/SIMPLELINK-MSP432-SDK/3.40.01.02](https://www.ti.com/tool/download/SIMPLELINK-MSP432-SDK/3.40.01.02)
-Select a dir to download to, I choose `/home/brighton/Documents/SDK/msp432p4111/ti`
+Select a dir to download to, I choose `/home/brighton/Documents/SDK/msp432/ti`
 
 ### Link
 In your `~/.bashrc` add:
 ```
-export MSP432P4111_HEADERS=/path/to/headers/
+export MSP432_HEADERS=/path/to/headers/
 # for example
-export MSP432P4111_HEADERS=/home/brighton/Documents/SDK/ti/msp432p4111/simplelink_msp432p4_sdk_3_40_01_02/
+export MSP432_HEADERS=/home/brighton/Documents/SDK/ti/msp432/simplelink_msp432p4_sdk_3_40_01_02/
 ```
 Then source: `source ~/.bashrc`
 
