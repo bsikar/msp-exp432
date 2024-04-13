@@ -1,5 +1,5 @@
 #include "uart_helper.h"
-#include "msp.h"
+#include <ti/devices/msp432p4xx/inc/msp432.h>
 #include <ctype.h>
 #include <stdlib.h>
 

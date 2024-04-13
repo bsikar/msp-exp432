@@ -1,8 +1,8 @@
-SIMPLELINK_MSP432_SDK_INSTALL_DIR := $(MSP432P4111_HEADERS)
+SIMPLELINK_MSP432_SDK_INSTALL_DIR := $(MSP432_HEADERS)
 
 CC = arm-none-eabi-gcc
 LNK = arm-none-eabi-gcc
-NAME = blinky-leds
+NAME = uart-send
 
 CFLAGS = -I"$(SIMPLELINK_MSP432_SDK_INSTALL_DIR)/source" \
 	-I"$(SIMPLELINK_MSP432_SDK_INSTALL_DIR)/source/third_party/CMSIS/Include" \
@@ -76,9 +76,5 @@ flash: $(NAME).elf
 	@echo Flashing
 	$(OPENOCD) -f $(OPENOCD_CFG) -c "program $< verify reset exit"
 
-asm: $(SOURCES)
-	@echo "Converting to assembly..."
-	@$(foreach src,$(SOURCES),$(CC) -O3 $(CFLAGS) -S $(src) -o $(src:.c=.s);)
-
-.PHONY: all clean flash asm
+.PHONY: all clean
 
