@@ -1,7 +1,7 @@
 #include "uart_helper.h"
-#include <ti/devices/msp432p4xx/inc/msp432.h>
 #include <ctype.h>
 #include <stdlib.h>
+#include <ti/devices/msp432p4xx/inc/msp432.h>
 
 void uart_init(void) {
   EUSCI_A0->CTLW0 |= 0X1;

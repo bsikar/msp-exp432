@@ -30,7 +30,7 @@ main:
 
 	// SET P2->DIR
 	ldr  r0, =PORT2_DIR_ADDR
-	mov  r1, #RED_LED_ON        
+	mov  r1, #RED_LED_ON
 	strh r1, [r0]
 
 loop:
