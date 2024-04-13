@@ -1,0 +1,142 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/arm-none-eabi-gcc",
+      "-I/home/brighton/Documents/SDK/ti/msp432/simplelink_msp432p4_sdk_3_40_01_02//source",
+      "-I/home/brighton/Documents/SDK/ti/msp432/simplelink_msp432p4_sdk_3_40_01_02//source/third_party/CMSIS/Include",
+      "-D__MSP432P401R__",
+      "-DDeviceFamily_MSP432P401x",
+      "-mcpu=cortex-m4",
+      "-mthumb",
+      "-mfloat-abi=hard",
+      "-mfpu=fpv4-sp-d16",
+      "-c",
+      "-o",
+      "src/main.o",
+      "src/main.c"
+    ],
+    "directory": "/home/brighton/Documents/GitHub/msp432/vim/c/uart-recieve",
+    "file": "/home/brighton/Documents/GitHub/msp432/vim/c/uart-recieve/src/main.c",
+    "output": "/home/brighton/Documents/GitHub/msp432/vim/c/uart-recieve/src/main.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/arm-none-eabi-gcc",
+      "-I/home/brighton/Documents/SDK/ti/msp432/simplelink_msp432p4_sdk_3_40_01_02//source",
+      "-I/home/brighton/Documents/SDK/ti/msp432/simplelink_msp432p4_sdk_3_40_01_02//source/third_party/CMSIS/Include",
+      "-D__MSP432P401R__",
+      "-DDeviceFamily_MSP432P401x",
+      "-mcpu=cortex-m4",
+      "-mthumb",
+      "-mfloat-abi=hard",
+      "-mfpu=fpv4-sp-d16",
+      "-c",
+      "-o",
+      "src/uart_helper.o",
+      "src/uart_helper.c"
+    ],
+    "directory": "/home/brighton/Documents/GitHub/msp432/vim/c/uart-recieve",
+    "file": "/home/brighton/Documents/GitHub/msp432/vim/c/uart-recieve/src/uart_helper.c",
+    "output": "/home/brighton/Documents/GitHub/msp432/vim/c/uart-recieve/src/uart_helper.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/arm-none-eabi-gcc",
+      "-I/home/brighton/Documents/SDK/ti/msp432/simplelink_msp432p4_sdk_3_40_01_02//source",
+      "-I/home/brighton/Documents/SDK/ti/msp432/simplelink_msp432p4_sdk_3_40_01_02//source/third_party/CMSIS/Include",
+      "-D__MSP432P401R__",
+      "-DDeviceFamily_MSP432P401x",
+      "-mcpu=cortex-m4",
+      "-mthumb",
+      "-mfloat-abi=hard",
+      "-mfpu=fpv4-sp-d16",
+      "-c",
+      "-o",
+      "lib/startup_msp432p401r_gcc.o",
+      "lib/startup_msp432p401r_gcc.c"
+    ],
+    "directory": "/home/brighton/Documents/GitHub/msp432/vim/c/uart-recieve",
+    "file": "/home/brighton/Documents/GitHub/msp432/vim/c/uart-recieve/lib/startup_msp432p401r_gcc.c",
+    "output": "/home/brighton/Documents/GitHub/msp432/vim/c/uart-recieve/lib/startup_msp432p401r_gcc.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/arm-none-eabi-gcc",
+      "-I/home/brighton/Documents/SDK/ti/msp432/simplelink_msp432p4_sdk_3_40_01_02//source",
+      "-I/home/brighton/Documents/SDK/ti/msp432/simplelink_msp432p4_sdk_3_40_01_02//source/third_party/CMSIS/Include",
+      "-D__MSP432P401R__",
+      "-DDeviceFamily_MSP432P401x",
+      "-mcpu=cortex-m4",
+      "-mthumb",
+      "-mfloat-abi=hard",
+      "-mfpu=fpv4-sp-d16",
+      "-c",
+      "-o",
+      "lib/system_msp432p401r.o",
+      "lib/system_msp432p401r.c"
+    ],
+    "directory": "/home/brighton/Documents/GitHub/msp432/vim/c/uart-recieve",
+    "file": "/home/brighton/Documents/GitHub/msp432/vim/c/uart-recieve/lib/system_msp432p401r.c",
+    "output": "/home/brighton/Documents/GitHub/msp432/vim/c/uart-recieve/lib/system_msp432p401r.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/arm-none-eabi-gcc",
+      "-I/home/brighton/Documents/SDK/ti/msp432/simplelink_msp432p4_sdk_3_40_01_02//source",
+      "-I/home/brighton/Documents/SDK/ti/msp432/simplelink_msp432p4_sdk_3_40_01_02//source/third_party/CMSIS/Include",
+      "-D__MSP432P401R__",
+      "-DDeviceFamily_MSP432P401x",
+      "-mcpu=cortex-m4",
+      "-mthumb",
+      "-mfloat-abi=hard",
+      "-mfpu=fpv4-sp-d16",
+      "-c",
+      "-o",
+      "src/configure_led.o",
+      "src/configure_led.s"
+    ],
+    "directory": "/home/brighton/Documents/GitHub/msp432/vim/c/uart-recieve",
+    "file": "/home/brighton/Documents/GitHub/msp432/vim/c/uart-recieve/src/configure_led.s",
+    "output": "/home/brighton/Documents/GitHub/msp432/vim/c/uart-recieve/src/configure_led.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/arm-none-eabi-gcc",
+      "-I/home/brighton/Documents/SDK/ti/msp432/simplelink_msp432p4_sdk_3_40_01_02//source",
+      "-I/home/brighton/Documents/SDK/ti/msp432/simplelink_msp432p4_sdk_3_40_01_02//source/third_party/CMSIS/Include",
+      "-D__MSP432P401R__",
+      "-DDeviceFamily_MSP432P401x",
+      "-mcpu=cortex-m4",
+      "-mthumb",
+      "-mfloat-abi=hard",
+      "-mfpu=fpv4-sp-d16",
+      "-c",
+      "-o",
+      "src/configure_uart.o",
+      "src/configure_uart.s"
+    ],
+    "directory": "/home/brighton/Documents/GitHub/msp432/vim/c/uart-recieve",
+    "file": "/home/brighton/Documents/GitHub/msp432/vim/c/uart-recieve/src/configure_uart.s",
+    "output": "/home/brighton/Documents/GitHub/msp432/vim/c/uart-recieve/src/configure_uart.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/arm-none-eabi-gcc",
+      "-I/home/brighton/Documents/SDK/ti/msp432/simplelink_msp432p4_sdk_3_40_01_02//source",
+      "-I/home/brighton/Documents/SDK/ti/msp432/simplelink_msp432p4_sdk_3_40_01_02//source/third_party/CMSIS/Include",
+      "-D__MSP432P401R__",
+      "-DDeviceFamily_MSP432P401x",
+      "-mcpu=cortex-m4",
+      "-mthumb",
+      "-mfloat-abi=hard",
+      "-mfpu=fpv4-sp-d16",
+      "-c",
+      "-o",
+      "src/process_rx_char.o",
+      "src/process_rx_char.s"
+    ],
+    "directory": "/home/brighton/Documents/GitHub/msp432/vim/c/uart-recieve",
+    "file": "/home/brighton/Documents/GitHub/msp432/vim/c/uart-recieve/src/process_rx_char.s",
+    "output": "/home/brighton/Documents/GitHub/msp432/vim/c/uart-recieve/src/process_rx_char.o"
+  }
+]
