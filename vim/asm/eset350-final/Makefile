@@ -4,7 +4,7 @@ CC = arm-none-eabi-gcc
 AS = arm-none-eabi-gcc  # Use GCC for assembling to maintain option compatibility
 LNK = arm-none-eabi-gcc 
 OBJCOPY = arm-none-eabi-objcopy
-NAME = uart-recieve
+NAME = eset350_final
 
 SRC_DIR = src
 LIB_DIR = lib
@@ -21,7 +21,7 @@ CFLAGS = -I"$(SIMPLELINK_MSP432_SDK_INSTALL_DIR)/source" \
 		 -mfloat-abi=hard \
 		 -mfpu=fpv4-sp-d16
 
-ASFLAGS = $(CFLAGS)  # Use the same flags for assembly
+ASFLAGS = $(CFLAGS)
 
 LFLAGS = -T msp432p401r.lds --specs=nosys.specs \
 		 -L"$(SIMPLELINK_MSP432_SDK_INSTALL_DIR)/source" \

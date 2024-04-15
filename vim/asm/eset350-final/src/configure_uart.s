@@ -50,8 +50,4 @@ configure_uart:
 	bic  r1, r1, #0x0001 // Clear the SWRST bit in R1
 	strh r1, [r0]        // Store the modified halfword value back to CTLW0
 
-	b end_process // Branch to end process
-
-end_process:
 	bx lr // Return from the subroutine
-

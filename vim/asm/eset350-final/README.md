@@ -1,18 +1,8 @@
 ## Project Overview
 
-2 States:
-- 1 Security System Active:
-    - The LED1 will be on and the LCD will say Active
-    - If the IR sensor detects a person the Buzzer will go off
-    - If the RFID reads the correct input the Buzzer stops and the LCD will say Inactive
-    - If the FID reads the wrong input the LED2 increases value
-        - The LED2 goes from 0 (off) to 7 (white)
-        - If the LED2 hits white then the LCD will say 'Locked Out' and the RFID wont take any more input
-        - To unlock it the system must be reset
-- 2 Security System Inactive
-    - The LED1 will be off and the LCD will say Inactive
-    - If the RFID reads the correct input while the left button is pressed the LCD screen will say 'Activate?'
-        - Then the Right button must be pressed to Activate the system, this will set the LED1 and LCD screen
+NLP will be used on a RaspberryPi, then over UART 0, 1, 2 will be sent to the msp432p401r. 
+This data will then turn on the LEDs, turn on/off a motor and turn on/off a buzzer if a sensor is active.
+The LED will be set to a random value by using a noisy unconnected pin and reading ADC
 
 ## (Port.Pin)'s
 
@@ -36,21 +26,13 @@ UCBx == eUSCI_Bx
 - **P2.1**: GREEN LED (LED2) (internal) [used in configure_led.s]
 - **P2.2**: BLUE LED (LED2) (internal) [used in configure_led.s]
 
-### RFID RC522 (SPI)
-- **P2.5**: GPIO (RFID RST)
-- **P3.7**: MISO SPI (eUSCI_B2 / PM_UCB2SOMI)
-- **P3.6**: MOSI SPI (eUSCI_B2 / PM_UCB2SIMO)
-- **P3.5**: SCK SPI (eUSCI_B2 / PM_UCB2CLK)
-- **P3.0**: GPIO (RFID NSS)
-- **P5.7**: GPIO (RFID IRQ)
+### ADC (ADC14, 14 bit resolution)
+- **P5.3**: ADC (ADC14MCTL2 / A2) (not connected to anything)
 
-### Sensors
+### Additional Peripherals
 - **P5.4**: GPIO (IR Sensor)
 - **P5.5**: GPIO (PIEZO Buzzer)
-
-### LCD 1602 (I2C)
-- **P1.6** SDA I2C (eUSCI_B0 / UCB0SDA)
-- **P1.7** SCL I2C (eUSCI_B0 / UCB0SCL)
+- **P5.6**: GPIO (Motor)
 
 ## UART (Universal Asynchronous Receiver/Transmitter)
 
@@ -227,6 +209,64 @@ UCBx == eUSCI_Bx
   - The line over which data is transmitted. It’s bidirectional and used for both sending and receiving data.
 - **Master/Slave Mode**
   - Devices on an I2C bus can act as either a master or a slave. The master controls the clock and initiates communication.
+
+## ADC (Analog-to-Digital Converter)
+
+### CTL0 (Control Register 0)
+- **Bit 15-14 - ADC14PDIV (Pre-divider)**
+  - `00` - Pre-divider of 1.
+  - `01` - Pre-divider of 4.
+  - `10` - Pre-divider of 32.
+  - `11` - Pre-divider of 64.
+- **Bits 13-12 - ADC14SHSx (Sample/Hold Source)**
+  - `00` - ADC14SC bit (software trigger).
+  - `01` - Timer trigger.
+  - `10` - Other external triggers.
+- **Bits 11-10 - ADC14SHP (Sample/Hold Pulse Mode)**
+  - `0` - Sample-and-hold source determined by ADC14SHSx bits.
+  - `1` - Sample-and-hold signal sourced from the sampling timer.
+- **Bits 9-8 - ADC14DIVx (Clock Divider)**
+  - `00` - Divider of 1.
+  - `01` - Divider of 2.
+  - `10` - Divider of 4.
+  - `11` - Divider of 8.
+- **Bits 7-5 - Reserved**
+- **Bit 4 - ADC14SSELx (Clock Source Select)**
+  - `0` - MODOSC (modulator oscillator).
+  - `1` - SMCLK (sub-main clock).
+- **Bit 3 - ADC14CONSEQx (Conversion Sequence Mode)**
+  - `00` - Single-channel, single-conversion.
+  - `01` - Sequence-of-channels.
+  - `10` - Repeat-single-channel.
+  - `11` - Repeat-sequence-of-channels.
+- **Bit 2 - ADC14BUSY (ADC Busy)**
+  - `1` - ADC is active.
+  - `0` - ADC is inactive.
+- **Bit 1 - Reserved**
+- **Bit 0 - ADC14ON (ADC On/Off)**
+  - `1` - ADC is on.
+  - `0` - ADC is off.
+
+### MCTL (Memory Control Register)
+- **Bit 15-12 - ADC14WINCTH (Window Comparator High Threshold)**
+- **Bit 11-8 - ADC14WINCCTL (Window Comparator Low Threshold)**
+- **Bit 7 - ADC14DIF (Differential Mode)**
+  - `1` - Differential mode enabled.
+  - `0` - Single-ended mode.
+- **Bits 6-5 - Reserved**
+- **Bits 4-0 - ADC14INCHx (Input Channel Select)**
+  - `00000` - A0.
+  - `00001` - A1.
+  - Various other codes for additional analog channels.
+
+### Conversion Process
+- **Start Conversion:** Triggered by software or a dedicated hardware signal.
+- **Sampling:** The ADC samples the analog signal based on the selected input channel.
+- **Conversion:** The sampled value is converted into a digital number, reflecting the signal's intensity.
+
+### Additional Features
+- **Interrupts:** The ADC can be configured to generate interrupts at the end of a conversion, when a certain threshold is reached, or if an error occurs.
+- **Low-Power Modes:** Designed for efficient operation, the ADC can be shut down or operate in a reduced power mode when not actively converting, saving energy in battery-powered applications.
 
 ## RFID-RC522 
 1. **VCC**: This is the power supply pin. It's connected to a positive voltage source. For the RFID-RC522, this is usually a 3.3V power supply.

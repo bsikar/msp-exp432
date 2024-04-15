@@ -2,7 +2,17 @@
 .cpu    cortex-m4
 .thumb
 
+.extern set_rgb
+.extern set_buzzer
+.extern set_motor
+
 .global process_rx_char
+
+jump_table:
+// Instead of .word in keil dcd would have been used
+    .word set_rgb
+    .word set_buzzer
+    .word set_motor
 
 process_rx_char:
 	ldr  r0, =0x4000180C // Address of EUSCI_A2->RXBUF
@@ -21,32 +31,16 @@ process_rx_char:
 
 rx_interrupt:
 	// Handle normal character processing here
-	cmp r1, #'R' // Compare received character with 'R'
-	beq set_R    // If equal, branch to set_R
-	cmp r1, #'G' // Compare received character with 'G'
-	beq set_G    // If equal, branch to set_G
-	cmp r1, #'B' // Compare received character with 'B'
-	beq set_B    // If equal, branch to set_B
+	cmp r1, #'0'        // Compare received character with '0'
+	blo end_process     // If its lower end the process
+    cmp r1, #'3'        // Compare recived character with '3'
+    bhi end_process     // If its higher end the process
+    
+	// None of the conditions met, call the jumptable
+    ldr  r0, =jump_table        // Load the base address of the jump table
+    ldr  r0, [r0, r1, lsl #2]   // Multiply index by 4, add to base address, and load the function address
 
-	// None of the conditions met, clear all LEDs
-	movs r3, #0   // Prepare r3 to clear the bits
-	strb r3, [r2] // Store the cleared state to P2->OUT
-
-	b end_process // Branch to end_process
-
-set_R:
-	movs r3, #0x01   // Set only BIT0 for Red LED (P2.0)
-	strb r3, [r2]    // Store the result to P2->OUT
-	b    end_process // Branch to end_process
-
-set_G:
-	movs r3, #0x02   // Set only BIT1 for Green LED (P2.1)
-	strb r3, [r2]    // Store the result to P2->OUT
-	b    end_process // Branch to end_process
-
-set_B:
-	movs r3, #0x04 // Set only BIT2 for Blue LED (P2.2)
-	strb r3, [r2]  // Store the result to P2->OUT
+    blx  r0              // Branch to the loaded address
 
 end_process:
 	bx lr // Return from the subroutine
