@@ -2,8 +2,8 @@
 .cpu    cortex-m4
 .thumb
 
-.global set_rgb
+.global set_led
 
-set_rgb:
+set_led:
     bx lr
 
