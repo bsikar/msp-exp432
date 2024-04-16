@@ -16,10 +16,6 @@ UCBx == eUSCI_Bx
 - **P3.2**: UART RX (eUSCI_A2 / PM_UCA2RXD) [used in process_configure_uart.s]
 - **P3.3**: UART TX (eUSCI_A2 / PM_UCA2TXD) [not used in this project]
 
-### On board Buttons
-- **P1.1**: LEFT BUTTON (S1) (internal)
-- **P1.4**: RIGHT BUTTON (S2) (internal)
-
 ### On board LEDs
 - **P1.0**: RED LED (LED1) (internal)
 - **P2.0**: RED LED (LED2) (internal) [used in configure_led.s]
