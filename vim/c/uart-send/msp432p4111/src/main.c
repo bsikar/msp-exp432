@@ -30,11 +30,11 @@ int main(void) {
   configureUART();
 
   while (1) {
-    sendUART("R");
+    sendUART("0");
     for (volatile int i = 100000; i > 0; i--) {}
-    sendUART("G");
+    sendUART("1");
     for (volatile int i = 100000; i > 0; i--) {}
-    sendUART("B");
+    sendUART("2");
     for (volatile int i = 100000; i > 0; i--) {}
     sendUART(" ");
     for (volatile int i = 100000; i > 0; i--) {}

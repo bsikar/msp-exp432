@@ -11,11 +11,11 @@
 .global main
 
 main:
-    bl configure_uart
-    bl configure_led
-    bl configure_buzzer
-    bl configure_motor
+	bl configure_uart
+	bl configure_led
+	bl configure_buzzer
+	bl configure_motor
 
 loop:
-    bl process_rx_char
-    b loop
+	bl process_rx_char
+	b  loop

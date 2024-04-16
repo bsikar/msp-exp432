@@ -13,7 +13,7 @@ configure_motor:
 	ldrb r1, [r0]
 
 	// Set P5.6
-    orr r1, r1, #0x20
+	orr r1, r1, #0x20
 
 	// Write the updated value back to P5->DIR
 	strb r1, [r0]
