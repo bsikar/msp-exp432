@@ -11,7 +11,7 @@ set_buzzer:
 	ldrb r1, [r0]        // Read the current value of P5->OUT
 
 	// Check if IR is on
-	tst r1, #0x16
+	tst r1, #0x20
 	bne end_process
 
 	// Invert the current value of P5.5
