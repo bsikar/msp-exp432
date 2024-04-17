@@ -76,6 +76,10 @@ flash: $(NAME).elf
 		@echo Flashing
 		@$(OPENOCD) -f $(OPENOCD_CFG) -c "program $< verify reset exit"
 
+# Ctrl-X O to change screens
+# layout asm
+# layout split
+# layout regs
 debug: $(NAME).elf
 	@echo "Starting debugger..."
 	@$(OPENOCD) -f $(OPENOCD_CFG) & \

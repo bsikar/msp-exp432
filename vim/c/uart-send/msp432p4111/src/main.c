@@ -1,3 +1,4 @@
+#include "uart_helper.h"
 #include <stdio.h>
 #include <ti/devices/msp432p4xx/inc/msp432.h>
 
@@ -28,15 +29,20 @@ void sendUART(char *msg) {
 int main(void) {
   WDT_A->CTL = 0x5A00 | 0x0080; // Stop watchdog timer
   configureUART();
+  uart_init();
 
   while (1) {
     sendUART("0");
-    for (volatile int i = 100000; i > 0; i--) {}
+    uart_send_str("'0'\r\n");
+    for (volatile int i = 1000000; i > 0; i--) {}
     sendUART("1");
-    for (volatile int i = 100000; i > 0; i--) {}
+    uart_send_str("'1'\r\n");
+    for (volatile int i = 1000000; i > 0; i--) {}
     sendUART("2");
-    for (volatile int i = 100000; i > 0; i--) {}
+    uart_send_str("'2'\r\n");
+    for (volatile int i = 1000000; i > 0; i--) {}
     sendUART(" ");
-    for (volatile int i = 100000; i > 0; i--) {}
+    uart_send_str("' '\r\n");
+    for (volatile int i = 1000000; i > 0; i--) {}
   }
 }

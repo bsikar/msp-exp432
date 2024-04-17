@@ -5,6 +5,7 @@
 .global set_motor
 
 set_motor:
+	// Load the address of P5->DIR (0x40004C00 + 0x044 = 0x40004C44)
 	ldr  r0, =0x40004C42 // Address of P5->OUT
 	ldrb r1, [r0]        // Read the current value of P5->OUT
 
