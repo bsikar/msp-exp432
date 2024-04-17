@@ -10,7 +10,7 @@ set_motor:
 	ldrb r1, [r0]        // Read the current value of P5->OUT
 
 	// Invert the current value of P5.5
-	eor  r1, r1, 0x20 // Toggle the 5th bit of R1 using Exclusive OR
-	strb r1, [r0]     // Store the modified value back to P5->OUT
+	eor  r1, r1, #0x20 // Toggle the 5th bit of R1 using Exclusive OR
+	strb r1, [r0]      // Store the modified value back to P5->OUT
 
 	bx lr // Return from the function

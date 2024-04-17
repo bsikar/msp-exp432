@@ -19,12 +19,6 @@ process_rx_char:
 	tst  r3, #0x01       // Test RX interrupt flag
 	beq  end_process     // Skip processing if no RX interrupt
 
-	// Handle character processing within valid range '0'-'2'
-	cmp r1, #'0'
-	blo end_process // Branch if character is below '0'
-	cmp r1, #'2'
-	bhi end_process // Branch if character is above '2'
-
 	// Directly branch to the appropriate function based on the input
 	cmp r1, #'0'
 	beq set_led
@@ -32,6 +26,8 @@ process_rx_char:
 	beq set_buzzer
 	cmp r1, #'2'
 	beq set_motor
+
+	b end_process
 
 end_process:
 	pop {lr} // Restore the return address

@@ -34,15 +34,15 @@ int main(void) {
   while (1) {
     sendUART("0");
     uart_send_str("'0'\r\n");
-    for (volatile int i = 1000000; i > 0; i--) {}
+    for (volatile int i = 100000; i > 0; i--) {}
     sendUART("1");
     uart_send_str("'1'\r\n");
-    for (volatile int i = 1000000; i > 0; i--) {}
+    for (volatile int i = 100000; i > 0; i--) {}
     sendUART("2");
     uart_send_str("'2'\r\n");
-    for (volatile int i = 1000000; i > 0; i--) {}
+    for (volatile int i = 100000; i > 0; i--) {}
     sendUART(" ");
     uart_send_str("' '\r\n");
-    for (volatile int i = 1000000; i > 0; i--) {}
+    for (volatile int i = 100000; i > 0; i--) {}
   }
 }
