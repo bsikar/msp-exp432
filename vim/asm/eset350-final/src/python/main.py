@@ -5,7 +5,7 @@ import time
 
 # Dictionary for voice commands
 command_dict = {
-    "light toggle": '0',
+    "light": '0',
     "sensor toggle": '2',
     "buzzer toggle": '3'
 }
@@ -60,7 +60,7 @@ def main():
                 # Sending the command repeatedly for 2 seconds
                 start_time = time.time()
                 while time.time() - start_time < 2:
-                    uart.send_data(str(processedTranscription))
+                    uart.send_data(str("9"))
                     time.sleep(0.1)  # Adjust this as needed for the rate of sending
                 
         # time.sleep(2)        
