@@ -21,10 +21,14 @@ process_rx_char:
 
 	// Directly branch to the appropriate function based on the input
 	cmp r1, #'0'
-	beq set_led
+	beq led_on
 	cmp r1, #'1'
-	beq set_buzzer
+	beq led_off
+
 	cmp r1, #'2'
+	beq set_buzzer
+
+	cmp r1, #'3'
 	beq set_motor
 
 	b end_process
