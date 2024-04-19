@@ -5,9 +5,12 @@ import time
 
 # Dictionary for voice commands
 command_dict = {
-    "light": '0',
-    "sensor toggle": '2',
-    "buzzer toggle": '3'
+    "light on": '0',
+    "light off": '1',
+    "sensor on": '2',
+    "sensor off": '3',
+    "buzzer on": '4',
+    "buzzer off": '5'
 }
 
 
@@ -29,7 +32,7 @@ def findCommand(keyword, threshold=75):
 
     if score >= threshold:
         return command_dict[best_match]
-    return '0' # Return None if no command closely matches
+    return '9' # Return None if no command closely matches
     
 # Initialize Audio Processor and UART
 audio_processor = AudioProcessor()
@@ -59,9 +62,17 @@ def main():
 
                 # Sending the command repeatedly for 2 seconds
                 start_time = time.time()
-                while time.time() - start_time < 2:
-                    uart.send_data(str("9"))
-                    time.sleep(0.1)  # Adjust this as needed for the rate of sending
+                while time.time() - start_time < 3:
+                    uart.send_data(str(processedTranscription))
+                    print("ON")
+                    time.sleep(0.5)  # Adjust this as needed for the rate of sending
+                print("wait")
+                time.sleep(3)
+                # start_time = time.time()
+                # while time.time() - start_time < 3:
+                #     uart.send_data(str("1"))
+                #     print("OFF")
+                #     time.sleep(0.5)  # Adjust this as needed for the rate of sending
                 
         # time.sleep(2)        
     except KeyboardInterrupt:
