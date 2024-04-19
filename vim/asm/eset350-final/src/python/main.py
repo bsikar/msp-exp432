@@ -7,8 +7,10 @@ import time
 command_dict = {
     "light on": '0',
     "light off": '1',
-    "sensor toggle": '2',
-    "buzzer toggle": '3'
+    "sensor on": '2',
+    "sensor off": '3',
+    "buzzer on": '4',
+    "buzzer off": '5'
 }
 
 
