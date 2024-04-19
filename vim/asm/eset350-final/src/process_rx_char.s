@@ -2,9 +2,12 @@
 .cpu    cortex-m4
 .thumb
 
-.extern set_led
-.extern set_buzzer
-.extern set_motor
+.extern led_on
+.extern led_off
+.extern buzzer_on
+.extern buzzer_off
+.extern motor_on
+.extern motor_off
 
 .global process_rx_char
 
@@ -26,10 +29,14 @@ process_rx_char:
 	beq led_off
 
 	cmp r1, #'2'
-	beq set_buzzer
-
+	beq buzzer_on
 	cmp r1, #'3'
-	beq set_motor
+	beq buzzer_off
+
+	cmp r1, #'4'
+	beq motor_on
+	cmp r1, #'5'
+	beq motor_off
 
 	b end_process
 
