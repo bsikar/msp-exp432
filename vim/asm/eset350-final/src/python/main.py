@@ -5,12 +5,9 @@ import time
 
 # Dictionary for voice commands
 command_dict = {
-    "light on": '0',
-    "light off": '1',
-    "fan on": '2',
-    "fan off": '3',
-    "temperature up": '4',
-    "temperature down": '5'
+    "light toggle": '0',
+    "sensor toggle": '2',
+    "buzzer toggle": '3'
 }
 
 
@@ -32,11 +29,11 @@ def findCommand(keyword, threshold=75):
 
     if score >= threshold:
         return command_dict[best_match]
-    return '-1\n' # Return None if no command closely matches
+    return '0' # Return None if no command closely matches
     
 # Initialize Audio Processor and UART
 audio_processor = AudioProcessor()
-uart = UARTHelper(port='COM5', baud_rate=57600)
+uart = UARTHelper(port='COM6', baud_rate=635)
 
 def main():
     try:
@@ -52,13 +49,20 @@ def main():
                 # print(F"TRANSCRIPTION TYPE: {type(transcription)}\n AFTER: {type(processedTranscription)} \n")
 
                 # Send transcription to the microcontroller
-                uart.send_data(str(processedTranscription))
+                # uart.send_data(str(processedTranscription))
                 
-                # Verified what the MCU recieved
-                received_data = uart.receive_data()
-                if received_data:
-                    print(f"Received from MCU: {received_data}")
-                    print("------------------------------------")
+                # # Verified what the MCU recieved
+                # received_data = uart.receive_data()
+                # if received_data:
+                #     print(f"Received from MCU: {received_data}")
+                #     print("------------------------------------")
+
+                # Sending the command repeatedly for 2 seconds
+                start_time = time.time()
+                while time.time() - start_time < 2:
+                    uart.send_data(str(processedTranscription))
+                    time.sleep(0.1)  # Adjust this as needed for the rate of sending
+                
         # time.sleep(2)        
     except KeyboardInterrupt:
         print("Exiting...")

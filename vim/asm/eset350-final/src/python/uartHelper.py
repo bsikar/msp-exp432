@@ -7,7 +7,7 @@ class UARTHelper:
 
     def send_data(self, data):
         """ Send data to the microcontroller via UART """
-        self.ser.write(data.encode() + b"\n")
+        self.ser.write(data.encode())
 
     def receive_data(self):
         """ Receive data from the microcontroller via UART """
