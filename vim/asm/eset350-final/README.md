@@ -28,7 +28,16 @@ UCBx == eUSCI_Bx
 ### Additional Peripherals
 - **P5.4**: GPIO (IR Sensor)
 - **P5.5**: GPIO (PIEZO Buzzer)
-- **P5.6**: GPIO (Motor)
+- **P4.7**: GPIO (Nano Wait Signal)
+
+### 7-Segment-Display (SSD) Mapping
+- **P4.0**: GPIO (SSD) 0
+- **P4.1**: GPIO (SSD) 1
+- **P4.2**: GPIO (SSD) 2
+- **P4.3**: GPIO (SSD) 3
+- **P4.4**: GPIO (SSD) 4
+- **P4.5**: GPIO (SSD) 5
+- **P4.6**: GPIO (SSD) 6
 
 ## UART (Universal Asynchronous Receiver/Transmitter)
 

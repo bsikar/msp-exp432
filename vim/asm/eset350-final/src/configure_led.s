@@ -9,13 +9,13 @@ configure_led:
 	// SEL0
 	ldr  r0, =0x40004C0B // Load the adress of P2->SEL0 (0x40004C00 + 0x00B = 0x40004C0B)
 	ldrb r1, [r0]        // Read the current value of P2->SEL0
-	bic  r1, #0x07       // Clear the (0-2)nd bit
+	bic  r1, r1, #0x07   // Clear the (0-2)nd bit
 	strb r1, [r0]        // Write the updated value back to P2->SEL0
 
 	// SEL1
 	ldr  r0, =0x40004C0D // Load the adress of P2->SEL1 (0x40004C00 + 0x00D = 0x40004C0D)
 	ldrb r1, [r0]        // Read the current value of P2->SEL1
-	bic  r1, #0x07       // Clear the (0-2)nd bit
+	bic  r1, r1, #0x07   // Clear the (0-2)nd bit
 	strb r1, [r0]        // Write the updated value back to P2->SEL1
 
 	// DIR
