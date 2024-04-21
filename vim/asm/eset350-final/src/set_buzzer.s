@@ -18,6 +18,10 @@ buzzer_on:
 	orr  r1, r1, #0x20 // Enable the 5th bit of R1 using Exclusive OR
 	strb r1, [r0]      // Store the modified value back to P5->OUT
 
+    push {lr}
+    bl ssd_count_down
+    pop {lr}
+
 	bx lr // Return from the function
 
 buzzer_off:
@@ -30,6 +34,10 @@ buzzer_off:
 
 	bic  r1, #0x20 // Disable the 5th bit of R1 using Exclusive OR
 	strb r1, [r0]  // Store the modified value back to P5->OUT
+
+    push {lr}
+    bl ssd_count_down
+    pop {lr}
 
 	bx lr // Return from the function
 
