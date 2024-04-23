@@ -13,14 +13,12 @@ void setup() {
 }
 
 void loop() {
-  // Continuously send the character '0' through the serial port
-
-  Serial.write('0');
+  Serial.write('2');
   digitalWrite(controlPin, HIGH);
   delay(5000); // Delay for 5 second
   digitalWrite(controlPin, LOW);
 
-  Serial.write('1');
+  Serial.write('3');
   digitalWrite(controlPin, HIGH);
   delay(5000); // Delay for 5 second
   digitalWrite(controlPin, LOW);

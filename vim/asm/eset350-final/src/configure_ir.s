@@ -24,8 +24,7 @@ configure_ir:
 	bic  r1, r1, #0x10   // Clear P5.4 (for input you clear)
 	strb r1, [r0]        // Write the updated value back to P5->DIR
 
-	// REN + OUT
-	// REN
+	// REN (pull-up)
 	ldr  r0, =0x40004C46 // Load the adress of P5->REN (0x40004C00 + 0x046 = 0x40004C46)
 	ldrb r1, [r0]        // Read the current value of P5->REN
 	orr  r1, r1, #0x10   // Set P5.4

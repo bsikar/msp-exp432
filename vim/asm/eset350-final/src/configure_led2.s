@@ -2,10 +2,10 @@
 .cpu    cortex-m4
 .thumb
 
-.global configure_led
+.global configure_led2
 
 // P2.0 (R), P2.1 (G), P2.2 (B)
-configure_led:
+configure_led2:
 	// SEL0
 	ldr  r0, =0x40004C0B // Load the adress of P2->SEL0 (0x40004C00 + 0x00B = 0x40004C0B)
 	ldrb r1, [r0]        // Read the current value of P2->SEL0

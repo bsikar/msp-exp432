@@ -2,10 +2,10 @@
 .cpu    cortex-m4
 .thumb
 
-.global configure_wait
+.global configure_delay
 
 // P4.7
-configure_wait:
+configure_delay:
 	// SEL0
 	ldr  r0, =0x40004C2B // Load the adress of P4->SEL0 (0x40004C00 + 0x02B = 0x40004C2B)
 	ldrb r1, [r0]        // Read the current value of P4->SEL0

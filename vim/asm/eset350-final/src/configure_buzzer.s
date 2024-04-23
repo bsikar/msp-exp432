@@ -15,7 +15,7 @@ configure_buzzer:
 	// SEL1
 	ldr  r0, =0x40004C4C // Load the adress of P5->SEL1 (0x40004C00 + 0x04C = 0x40004C4C)
 	ldrb r1, [r0]        // Read the current value of P5->SEL1
-	bic  r1, #0x20       // Clear the 5th bit
+	bic  r1, r1, #0x20   // Clear the 5th bit
 	strb r1, [r0]        // Write the updated value back to P5->SEL1
 
 	// DIR
