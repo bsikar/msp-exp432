@@ -80,7 +80,6 @@ flash: $(NAME).elf
 simulate: $(NAME).elf
 		@echo "Simulating..."
 		@$(QEMU) -machine mps2-an385 -cpu cortex-m3 -kernel $(NAME).elf -nographic -s -S &
-		sleep 1  # Ensure QEMU has time to start up and open the port
 		@$(GDB) $(NAME).elf -ex "target remote localhost:1234"
 
 debug: $(NAME).elf

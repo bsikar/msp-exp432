@@ -19,14 +19,9 @@ buzzer_on:
 	// tst r3, #0x10
 	// bne end_process
 
-	orr  r2, r2, #0x20 // Enable the 5th bit
-	strb r2, [r0]      // Store the modified value back to P5->OUT
-
-	push {lr}
-	bl   ssd_count_down
-	pop  {lr}
-
-	bx lr // Return from the function
+	orr  r2, r2, #0x20  // Enable the 5th bit
+	strb r2, [r0]       // Store the modified value back to P5->OUT
+	b    ssd_count_down
 
 buzzer_off:
 	ldr  r0, =0x40004C42 // Address of P5->OUT
@@ -38,14 +33,9 @@ buzzer_off:
 	// tst r3, #0x10
 	// bne end_process
 
-	bic  r2, r2, #0x20 // Disable the 5th bit
-	strb r2, [r0]      // Store the modified value back to P5->OUT
-
-	push {lr}
-	bl   ssd_count_down
-	pop  {lr}
-
-	bx lr // Return from the function
+	bic  r2, r2, #0x20  // Disable the 5th bit
+	strb r2, [r0]       // Store the modified value back to P5->OUT
+	b    ssd_count_down
 
 end_process:
 	bx lr // Return from the function

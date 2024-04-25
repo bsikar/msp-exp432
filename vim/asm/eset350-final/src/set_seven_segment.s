@@ -47,8 +47,9 @@ ssd_count_down:
 	bl ssd0_on
 	bl delay1_s
 
-	bl  led1_on
-	bl  ssd_clear
+	bl led1_on
+	bl ssd_clear
+
 	pop {lr}
 	bx  lr
 
@@ -57,8 +58,7 @@ ssd_clear:
 	ldrb r1, [r0]        // Read the current value of P4->OUT
 	orr  r1, #0x7F       // Clear the 0->6 Bits
 	strb r1, [r0]        // Write the updated value back to P4->OUT
-
-	bx lr // Return from the function
+	bx   lr              // Return from the function
 
 ssd0_on:
 	push {lr}
