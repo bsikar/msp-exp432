@@ -22,6 +22,7 @@ main:
 	bl configure_delay
 	bl configure_ssd
 
+	bl buzzer_on
+
 loop:
-	bl process_rx_char
-	b  loop
+	b loop
