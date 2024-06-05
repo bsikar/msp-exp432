@@ -28,7 +28,16 @@ UCBx == eUSCI_Bx
 ### Additional Peripherals
 - **P5.4**: GPIO (IR Sensor)
 - **P5.5**: GPIO (PIEZO Buzzer)
-- **P5.6**: GPIO (Motor)
+- **P4.7**: GPIO (Nano Wait Signal)
+
+### 7-Segment-Display (SSD) Mapping
+- **P4.0**: GPIO (SSD) 0
+- **P4.1**: GPIO (SSD) 1
+- **P4.2**: GPIO (SSD) 2
+- **P4.3**: GPIO (SSD) 3
+- **P4.4**: GPIO (SSD) 4
+- **P4.5**: GPIO (SSD) 5
+- **P4.6**: GPIO (SSD) 6
 
 ## UART (Universal Asynchronous Receiver/Transmitter)
 
@@ -280,3 +289,134 @@ UCBx == eUSCI_Bx
 7. **NSS**: This stands for Negative Slave Select (also known as Chip Select or CS). It is used in SPI communication to activate the RFID module. It is typically active low, meaning the RFID module is selected for communication when this pin is pulled to a low logic level.
 
 8. **IRQ**: This stands for Interrupt Request. This pin is used by the RFID module to alert the microcontroller of certain events (like the presence of an RFID tag in its vicinity). It is an optional connection, not always used in every project.
+
+## Simulate/GDB
+1. **`si` (stepi)** - Steps one instruction at a time. This is your primary tool for moving through assembly code instruction by instruction.
+
+2. **`ni` (nexti)** - Steps over the instruction; if the instruction is a function call, `ni` executes the whole function as a single step, unlike `si` which would step into the function.
+
+3. **`disassemble` / `disass`** - Displays the assembly code for a specific function or memory range. You can use it like `disassemble function_name` or `disassemble $pc` to see the assembly at the current program counter.
+
+4. **`x`** - Examines memory at a given address. It's versatile for inspecting memory in various formats and units. For example, `x/10i $pc` displays 10 instructions starting from the program counter.
+
+5. **`info registers`** - Shows the current values of all registers. You can also examine a specific register by using `info register $eax`, for instance, to see the value of the `eax` register.
+
+6. **`set`** - Allows you to modify the values of registers or variables. For example, `set $eax = 0x1` sets the `eax` register to 1.
+
+7. **`break`** - Sets a breakpoint at a specific line or function or address. In assembly, you might set it at a specific instruction address, like `break *0x00400576`.
+
+8. **`continue` (c)** - Continues running the program until the next breakpoint or the end of the program.
+
+9. **`layout asm`** - Switches the GDB layout to show the assembly code. This view is helpful for visualizing where in the code you are as you step through instructions.
+
+10. **`layout regs`** - Shows both the assembly code and the current state of registers. It's particularly useful for seeing how each instruction affects the registers.
+
+11. **`info proc mappings`** - Useful for viewing the memory mapping of the process, which helps in understanding where different parts of your code and data are located in memory.
+
+12. **`tui enable`** - Activates the Text User Interface, making it easier to visualize code, registers, and source (if available).
+
+### Displaying the Stack
+In GDB, displaying the stack can provide crucial insights into the state of your program, especially when debugging complex issues involving function calls and memory management. Here are several ways to display the stack in GDB:
+
+### 1. Using `info stack` or `bt` (backtrace)
+
+These commands display the call stack with function names, source file names, and line numbers, assuming debugging symbols are available.
+
+- **`info stack`** or **`info frame`**: Shows a detailed stack frame, which includes function names, arguments, and locals.
+  
+  - Example command:
+    ```bash
+    (gdb) info stack
+    ```
+
+- **`bt`** or **`backtrace`**: Shows the call stack. You can limit the number of frames shown by specifying a number (e.g., `bt 10`).
+
+  - Example command:
+    ```bash
+    (gdb) bt
+    ```
+
+### 2. Examining the Stack Pointer
+
+You can display the contents around the current stack pointer using the `x` command, which is used to examine memory in various formats:
+
+- **`x/NFU ADDR`**: 
+  - `N` tells GDB how many units to display.
+  - `F` specifies the display format (`x` for hexadecimal, `d` for signed decimal, and so on).
+  - `U` specifies the unit size (`b` for byte, `h` for halfword, `w` for word, `g` for giant/8 bytes).
+  - `ADDR` is the address to start displaying from, often the stack pointer.
+
+For example, to display 20 words at the current stack pointer:
+```bash
+(gdb) x/20xw $sp
+```
+or for a more typical 64-bit system:
+```bash
+(gdb) x/20xg $rsp
+```
+
+### 3. Display Stack in a More Structured Way
+
+If you want to see local variables along with their values for a particular frame, you can use:
+
+- **`info locals`**: Shows the local variables of the current function.
+  
+  - Example command:
+    ```bash
+    (gdb) info locals
+    ```
+
+- **`info args`**: Shows the arguments passed to the current function.
+
+  - Example command:
+    ```bash
+    (gdb) info args
+    ```
+
+### 4. Displaying Specific Stack Frames
+
+You can also switch to a specific frame to examine its contents more closely:
+
+- **`frame N`**: Switch to frame number `N`.
+
+  - Example command:
+    ```bash
+    (gdb) frame 2
+    ```
+
+After switching, you can use `info locals`, `info args`, or `x` commands to inspect the state of that particular frame.
+
+These methods allow you to explore the stack in various levels of detail, helping to diagnose issues related to function calls, recursion, memory corruption, and more.
+
+### Breaking
+To set a breakpoint at a specific memory address in GDB, such as `0xf0`, you use the `break` command with the `*` symbol to indicate that you are specifying an address, not a function name or line number. Here's how you can do it:
+
+```bash
+(gdb) break *0xf0
+```
+
+This command tells GDB to insert a breakpoint at the memory address `0xf0`. When the program execution reaches this address, GDB will pause the execution, allowing you to inspect the program state, examine variables, and step through the code further.
+
+### Additional Details
+
+- **Conditional Breakpoints:** If you want to set a breakpoint that only triggers under certain conditions, you can add a condition to the breakpoint. For example, to break at address `0xf0` only when a certain register `eax` equals `5`, you would do:
+
+  ```bash
+  (gdb) break *0xf0 if $eax == 5
+  ```
+
+- **Temporary Breakpoints:** If you only need the breakpoint once, you can make it temporary so that it automatically deletes itself after triggering:
+
+  ```bash
+  (gdb) tbreak *0xf0
+  ```
+
+- **Checking Breakpoints:** After setting breakpoints, you can check where they are set using:
+
+  ```bash
+  (gdb) info breakpoints
+  ```
+
+This will list all the breakpoints you have set along with their conditions and hit counts.
+
+Setting breakpoints at specific addresses is particularly useful when debugging low-level code, such as operating systems or embedded systems code, where execution paths are not straightforward, or source code may not be directly available.

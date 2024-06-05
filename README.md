@@ -19,6 +19,14 @@ windows: `powershell -ExecutionPolicy Bypass -File .\format.ps1`
 ```
 sudo apt-get install build-essential gcc make gcc-arm-none-eabi openocd gconf2
 sudo pacman -S base-devel gcc make arm-none-eabi-gcc openocd dconf arm-none-eabi-newlib
+
+sudo pacman -S qemu-system-arm qemu-system-arm-firmware
+```
+
+#### if Arduino is used
+```
+sudo apt-get install gcc-avr avr-libc avrdude arduino-avr-core
+sudo pacman -S avr-gcc avr-libc avrdude arduino-avr-core
 ```
 
 ### SDK
